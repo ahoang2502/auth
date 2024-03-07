@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { useTransition } from "react";
+import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 
 import { CardWrapper } from "./CardWrapper";
@@ -95,11 +96,20 @@ export const LoginForm = () => {
 									<FormControl>
 										<Input
 											{...field}
-											placeholder="123456"
+											placeholder="******"
 											type="password"
 											disabled={isPending}
 										/>
 									</FormControl>
+
+									<Button
+										size="sm"
+										variant="link"
+										className="px-0 font-normal text-muted-foreground"
+										asChild
+									>
+										<Link href="/auth/reset">Forgot password?</Link>
+									</Button>
 
 									<FormMessage />
 								</FormItem>
