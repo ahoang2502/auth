@@ -37,6 +37,8 @@ export const LoginForm = () => {
 			? "Email already in use with different provider!"
 			: "";
 
+	const callbackUrl = searchParams.get("callbackUrl");
+
 	const form = useForm<z.infer<typeof LoginSchema>>({
 		resolver: zodResolver(LoginSchema),
 		defaultValues: {
@@ -50,7 +52,7 @@ export const LoginForm = () => {
 		setSuccess("");
 
 		startTransition(() => {
-			login(values)
+			login(values, callbackUrl)
 				.then((data) => {
 					if (data?.error) {
 						form.reset();
